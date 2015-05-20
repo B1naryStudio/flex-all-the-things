@@ -21,7 +21,25 @@ header {
 	background-size: 36px 36px;
 }
 
-.aside_left {
+aside {
 	width: 200px;
-	background: #29C5FE;
+	background: #29d5FE;
+	flex: 3 1 20%;
+}
+
+#main {
+	min-height: 800px;
+	background: #2915FE;
+	display: flex;
+	flex-flow: row;
+}
+
+.main {
+	background: #29d5aE;
+	flex: 3 1 60%;
+}
+
+footer {
+	height: 200px;
+	background: #00A3B8;
 }
