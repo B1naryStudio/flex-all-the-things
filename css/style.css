@@ -1,24 +1,169 @@
+/* Import fonts */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
 * {
 	margin: 0;
 	padding: 0;
+	font-family: 'entypo', sans-serif;
 }
 
 header {
 	background: #19B5FF;
-	height: 200px;
-	background-image: -webkit-gradient(linear, 0 100%, 100% 0,
-    color-stop(.25, rgba(255, 255, 255, .2)), 
-    color-stop(.25, transparent),
-    color-stop(.5, transparent), 
-    color-stop(.5, rgba(255, 255, 255, .2)),
-    color-stop(.75, rgba(255, 255, 255, .2)),
-    color-stop(.75, transparent), to(transparent));
-	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 75%, transparent 75%, transparent);
-	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 75%, transparent 75%, transparent);
-	background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 75%, transparent 75%, transparent);
-	background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 75%, transparent 75%, transparent);
-	background-image: linear-gradient(-45deg, rgba(255, 255, 255, .1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 75%, transparent 75%, transparent);
-	background-size: 36px 36px;
+	height: auto;
+}
+
+header .header-logo img {
+	height: 50px;
+}
+
+header .header-top {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	height: 50px;
+	background: #373939;
+	position: relative;
+}
+
+header .header-menu {
+	height: 50px;
+	background: lightgray;
+}
+
+header .header-accordion {
+	height: 250px;
+}
+
+header .header-accordion .accordion {
+	width: 100%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+header .header-accordion .accordion .accordion-item {
+	flex: 1;
+	height: 250px;
+}
+
+header .header-accordion .accordion .accordion-item.blue{
+	background: blue;
+}
+
+header .header-accordion .accordion .accordion-item.red {
+	background: red;
+}
+
+header .header-accordion .accordion .accordion-item.green {
+	background: green;
+}
+
+header .header-accordion .accordion .accordion-item:hover {
+	flex: 4;
+}
+
+/* HEADER USERPANEL */
+
+header .userpanel{
+  width: 280px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 50px;
+  background: #373939;
+  cursor: pointer;
+  z-index: 100;
+}
+header .userpanel .user {
+  display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+  position:relative;
+  text-align:center;
+  color:white;
+}
+header .userpanel .user > div:nth-child(-n+2) {
+  border-right: 2px solid #333;
+}
+header .userpanel .notification {
+  width:60px;
+  height:100%;
+  line-height:49px;
+  float:left;
+  display:block;
+  position:relative;
+}
+header .userpanel .notification [class*="entypo-"] {
+  font-size:17px;
+  margin-right:13px;
+}
+header .userpanel .notification .number {
+width: 20px;
+height: 20px;
+background: #2890E6;
+border-radius: 5px;
+line-height: 20px;
+position: absolute;
+top: 12px;
+right:14px;
+z-index: -1;
+}
+header .userpanel .picture {
+  width:50px;
+  height: 50px;
+  line-height:50px;
+  float:left;
+  display:block;
+  position:relative;
+}
+header .userpanel .picture img {
+  width:40px;
+  height:40px;
+  padding:5px;
+  border-radius:7px;
+  overflow:hidden;
+  filter: grayscale(0.8);
+  -webkit-filter: grayscale(0.8);
+}
+header .userpanel .picture img:hover {
+  filter: grayscale(0);
+  -webkit-filter: grayscale(0);
+}
+header .userpanel .name {
+  width:160px;
+  height:100%;
+  line-height:55px;
+  float:left;
+  display:block;
+  position:relative;
+  text-align:left;
+  padding:0 10px;
+}
+header .userpanel .name [class*="entypo-"] {
+  position: absolute;
+  font-size:20px;
+  right:15px;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+}
+header .userpanel .drop {
+  width:160px;
+  min-height:100px;
+  display:none;
+  position:absolute;
+  top:55px;
+  right:0;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background:crimson;
 }
 
 aside {
