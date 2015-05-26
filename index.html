@@ -7,25 +7,40 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body ng-controller="playgroundController">
+<!-- HEADER START -->
 	<header>
+	<!-- HEADER TOP  -->
 		<div class='header-top'>
-			<div class='header-logo'><img src="images/logo.png" /></div>
-			<div class='header-search'><div></div></div>
-			    <section class="userpanel">
-			      <div class="user">
-			        <div class="notification"><span class="entypo-bell"></span><span class="number">6</span></div>
-			        <div class="picture"><img src="http://lorempixel.com/output/people-q-c-400-400-9.jpg" alt="User Name" /></div>
-			        <div class="name">Nombre Usuario</div>
-			      </div>
-			    </section>
+			<div class='header-logo'>
+				<img src="images/logo.png" />
+			</div>
+			<div class='header-search'>
+				<div>
+					<input type='text' placeholder='search'>
+				</div>
+			</div>
+		    <section class="userpanel">
+				<div class="user">
+					<div class="notification">
+						<span class="entypo-bell"></span>
+						<span class="number">6</span>
+					</div>
+					<div class="picture">
+						<img src="http://lorempixel.com/output/people-q-c-400-400-9.jpg" alt="User Name" />
+					</div>
+					<div class="name">Nombre Usuario</div>
+				</div>
+		    </section>
 		</div>
-		<div class='header-menu'>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
+	<!-- HEADER MENU -->
+		<div class='header-menu' ng-style="flexDirection">
+				<div ng-click='flexDirection={"justify-content":"flex-start"}'>FLEX START</div>
+				<div ng-click='flexDirection={"justify-content":"flex-end"}'>FLEX END</div>
+				<div ng-click='flexDirection={"justify-content":"center"}'>CENTER</div>
+				<div ng-click='flexDirection={"justify-content":"space-between"}'>SPACE BETWEEN</div>
+				<div ng-click='flexDirection={"justify-content":"space-around"}'>SPACE AROUND</div>
 		</div>
+	<!-- HEADER ACCORDION-->
 		<div class='header-accordion'>
 			<div class = "accordion">
 				<div class="accordion-item blue"></div>
@@ -34,11 +49,67 @@
 			</div>
 		</div>
 	</header>
+<!-- HEADER END -->
+<!-- MAIN CONTENT START -->
 	<div id='main'>
 	<aside class="aside_left">Aside left</aside>
-	<div class="main">Main</div>
+	<div class="main">
+		<div class='main-block first'>
+			<div class='main-first-block-stats controls'>
+				<select ng-model='main.justifying' ng-change='setMainBlockProperties()'>
+					<option value='flex-start'>flex-start</option>
+					<option value='flex-end'>flex-end</option>
+					<option value='center'>center</option>
+					<option value='space-between'>space-between</option>
+					<option value='space-around'>space-around</option>
+				</select>
+				<select ng-model='main.wrap' ng-change='setMainBlockPropertiesWrap()'>
+					<option value='wrap'>wrap</option>
+					<option value='nowrap'>nowrap</option>
+				</select>
+				<select ng-model='main.direction' ng-change='setMainBlockPropertiesDirection()'>
+					<option value='row'>row</option>
+					<option value='row-reverse'>row-reverse</option>
+					<option value='column'>column</option>
+					<option value='column-reverse'>column-reverse</option>
+				</select>
+				<select ng-model='main.alignitems' ng-change='setMainBlockPropertiesAlignItems()'>
+					<option value='flex-start'>flex-start</option>
+					<option value='flex-end'>flex-end</option>
+					<option value='center'>center</option>
+					<option value='stretch'>stretch</option>
+					<option value='baseline'>baseline</option>
+				</select>
+				<select ng-model='main.aligncontent' ng-change='setMainBlockPropertiesAlignContent()'>
+					<option value='flex-start'>flex-start</option>
+					<option value='flex-end'>flex-end</option>
+					<option value='center'>center</option>
+					<option value='stretch'>stretch</option>
+					<option value='space-between'>space-between</option>
+					<option value='space-around'>space-around</option>
+				</select>
+			</div>
+			<div class='main-first-block-wrapper' style='{"flex-wrap", mail.wrap}'>
+				<div class='main-first-block-item' ng-repeat='n in mainblocks'>{{n.text}}</div>	
+			</div>	
+		</div>
+		<div class='main-photogallery-block'>
+			<div class='main-photogallery-block-controls controls'>
+				<input type="button" ng-click='addImagesToGallery()' value="ADD">
+				<input type="button" ng-click='removeImagesFromGallery()' value="REMOVE">
+			</div>
+			<div class="box">
+  				<div class="col-item" ng-repeat='galleryRow in galleryRows'>
+    				<div class="item img1" ng-repeat='itemPhoto in galleryRow' style='background: url({{itemPhoto.url}})'></div>
+    			</div>
+    		</div>
+		</div>
+	</div>
 	<aside class="aside_right">Aside right</aside>
 	</div>
+<!-- MAIN CONTENT END -->
+<!-- FOOTER START -->
 	<footer>Footer</footer>
+<!-- FOOTER END -->
 </body>
 </html>
