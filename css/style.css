@@ -30,6 +30,14 @@ header .header-top {
 	height: 50px;
 	background: #C5C7C7;
 	position: relative;
+  display: flex;
+}
+
+header .header-top .top-right {
+  display: flex;
+  flex:1;
+  justify-content: flex-end;
+  flex-wrap:wrap;
 }
 
 header .header-menu {
@@ -42,9 +50,15 @@ header .header-menu div {
   flex:1;
   color: #373939;
   max-width: 150px;
-  padding: 17px;
+  padding: 17px 0;
   text-align: center;
   /*border-right: 1px solid #333;*/
+}
+
+header .header-menu div:hover {
+  background: darkgray;
+  color: white;
+  cursor: pointer;
 }
 
 header .header-menu div:first-child {
@@ -52,7 +66,7 @@ header .header-menu div:first-child {
 }
 
 header .header-accordion {
-	height: 250px;
+	height: 350px;
 }
 
 header .header-accordion .accordion {
@@ -66,8 +80,8 @@ header .header-accordion .accordion {
 
 header .header-accordion .accordion .accordion-item {
 	flex: 1;
-	height: 250px;
-  background-size:  cover;
+	height: 350px;
+  background-size:  auto 100%;
   background-repeat: no-repeat;
   transition: all 0.5s ease-in ;
 }
@@ -84,6 +98,10 @@ header .header-accordion .accordion .accordion-item.green {
 	background: url('../images/car3.jpg');
 }
 
+header .header-accordion .accordion .accordion-item.rose {
+  background: url('../images/car4.jpg');
+}
+
 header .header-accordion .accordion .accordion-item:hover {
 	flex: 4;
   transition: all 0.5s ease-in ;
@@ -94,12 +112,12 @@ header .header-accordion .accordion .accordion-item:hover {
 header .userpanel{
   width: 280px;
   height: 100%;
-  position: absolute;
   top: 0;
   right: 50px;
   background: #C5C7C7;
   cursor: pointer;
   z-index: 100;
+  self-align: flex-end;
 }
 header .userpanel .user {
   display: -webkit-box;
@@ -161,7 +179,7 @@ header .userpanel .picture img:hover {
 header .userpanel .name {
   width:160px;
   height:100%;
-  line-height:55px;
+  line-height:50px;
   float:left;
   display:block;
   position:relative;
@@ -179,7 +197,6 @@ header .userpanel .drop {
   width:160px;
   min-height:100px;
   display:none;
-  position:absolute;
   top:55px;
   right:0;
   border-bottom-right-radius: 5px;
@@ -191,11 +208,13 @@ header .header-search input{
   height: 30px;
   margin: 10px 0;
   border-radius: 20px;
+  border: none;
+  padding-left: 10px;
 }
 
 aside {
 	width: 200px;
-	background: #29d5FE;
+	background: #ebebeb;
 	flex: 1;
 }
 
@@ -249,6 +268,7 @@ footer {
 
 .main-photogallery-block {
   height: 600px;
+  margin-bottom: 40px;
 }
 
 .main-photogallery-block .box {
@@ -306,7 +326,7 @@ footer {
 
 .controls {
   background: #ccc;
-  height: 40px;
+  height: auto;
   padding: 0px;
 }
 
@@ -319,9 +339,124 @@ footer {
   border: none;
 }
 
+.main-first-block-stats  {
+  padding: 10px;
+}
+
 .main-photogallery-block-controls input {
   background: transparent;
   border:none;
   height: 30px;
   padding: 5px;
+}
+
+.aside-left {
+  display: flex;
+  flex-direction: column;
+  flex:1;
+}
+
+.aside-right {
+  display: flex;
+  flex-direction: column;
+  flex:1;
+}
+
+
+.aside_left .aside-left-item{
+  height: 20px;
+  background: #ebebeb;
+  padding: 10px;
+  flex:1;
+  color: #555;
+  border-bottom: 1px solid #ddd;
+}
+
+.aside_left .aside-left-item:hover {
+  background: darkgray;
+  cursor: pointer;
+  color: white;
+}
+
+  #main {
+    flex-wrap: wrap;
+  }
+
+  footer {
+    display: flex;
+    background: #efefef;
+  }
+
+  footer .footer-block {
+    flex:1;
+    border-right: 1px solid #cdcdcd;
+  }
+
+  footer .footer-block section {
+    background: #ededed;
+    padding: 10px;
+    text-align: center;
+  }
+   .aside_right {
+    display: flex;
+    flex-direction: column;
+    background: #efefef;
+   }
+  .aside_right .aside-block {
+    background: #ddd;
+    height:  100px;
+    flex:1;
+    margin: 22px;
+  }
+
+@media all and (max-width: 1000px) {
+
+#main > * {
+  flex: 1 100%;
+}
+  aside:nth-child(1) {
+    /*flex: 1 auto;*/
+    order:1;
+  }
+
+  aside:nth-child(2) {
+    order:2;
+  }
+
+  #main aside {
+    flex: 1 50%;
+  }
+  .main-photogallery-block {
+    order: 4;
+  }
+
+  .main-block {
+    orader: 3;
+  }
+}
+
+@media all and (max-width: 750px) {
+  header .header-menu {
+    flex-direction: column;
+    height: auto;
+  }
+
+  header .header-menu div {
+    max-width: 100%;
+  }
+
+  header .header-top {
+    height: auto;
+    min-height: 50px;
+  }
+}
+
+@media all and (max-width: 500px) {
+  footer {
+    flex-direction: column;
+  }
+
+  #main aside {
+    flex: 1 100%;
+  }
 }
