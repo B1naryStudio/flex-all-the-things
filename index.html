@@ -14,23 +14,25 @@
 			<div class='header-logo'>
 				<img src="images/logo.png" />
 			</div>
-			<div class='header-search'>
-				<div>
-					<input type='text' placeholder='search'>
-				</div>
-			</div>
-		    <section class="userpanel">
-				<div class="user">
-					<div class="notification">
-						<span class="entypo-bell"></span>
-						<span class="number">6</span>
+			<div class='top-right'>
+				<div class='header-search'>
+					<div>
+						<input type='text' placeholder='search'>
 					</div>
-					<div class="picture">
-						<img src="http://lorempixel.com/output/people-q-c-400-400-9.jpg" alt="User Name" />
-					</div>
-					<div class="name">Nombre Usuario</div>
 				</div>
-		    </section>
+			    <section class="userpanel">
+					<div class="user">
+						<div class="notification">
+							<span class="entypo-bell"></span>
+							<span class="number">6</span>
+						</div>
+						<div class="picture">
+							<img src="http://lorempixel.com/output/people-q-c-400-400-9.jpg" alt="User Name" />
+						</div>
+						<div class="name">Any name here</div>
+					</div>
+			    </section>
+			   </div>
 		</div>
 	<!-- HEADER MENU -->
 		<div class='header-menu' ng-style="flexDirection">
@@ -43,6 +45,7 @@
 	<!-- HEADER ACCORDION-->
 		<div class='header-accordion'>
 			<div class = "accordion">
+				<!--<div class="accordion-item rose"></div>-->
 				<div class="accordion-item blue"></div>
 				<div class="accordion-item red"></div>
 				<div class="accordion-item green"></div>
@@ -52,10 +55,19 @@
 <!-- HEADER END -->
 <!-- MAIN CONTENT START -->
 	<div id='main'>
-	<aside class="aside_left">Aside left</aside>
+	<aside class="aside_left">
+		<div class='aside-left-item'>Menu item 1</div>
+		<div class='aside-left-item'>Menu item 2</div>
+		<div class='aside-left-item'>Menu item 3</div>
+		<div class='aside-left-item'>Menu item 4</div>
+		<div class='aside-left-item'>Menu item 5</div>
+		<div class='aside-left-item'>Menu item 6</div>
+		<div class='aside-left-item'>Menu item 7</div>
+	</aside>
 	<div class="main">
 		<div class='main-block first'>
 			<div class='main-first-block-stats controls'>
+				<b>Justify content</b>
 				<select ng-model='main.justifying' ng-change='setMainBlockProperties()'>
 					<option value='flex-start'>flex-start</option>
 					<option value='flex-end'>flex-end</option>
@@ -63,16 +75,19 @@
 					<option value='space-between'>space-between</option>
 					<option value='space-around'>space-around</option>
 				</select>
+				<b>Wrapping</b>
 				<select ng-model='main.wrap' ng-change='setMainBlockPropertiesWrap()'>
 					<option value='wrap'>wrap</option>
 					<option value='nowrap'>nowrap</option>
 				</select>
+				<b>Direction</b>
 				<select ng-model='main.direction' ng-change='setMainBlockPropertiesDirection()'>
 					<option value='row'>row</option>
 					<option value='row-reverse'>row-reverse</option>
 					<option value='column'>column</option>
 					<option value='column-reverse'>column-reverse</option>
 				</select>
+				<b>Align items</b>
 				<select ng-model='main.alignitems' ng-change='setMainBlockPropertiesAlignItems()'>
 					<option value='flex-start'>flex-start</option>
 					<option value='flex-end'>flex-end</option>
@@ -80,6 +95,7 @@
 					<option value='stretch'>stretch</option>
 					<option value='baseline'>baseline</option>
 				</select>
+				<b>Align content</b>
 				<select ng-model='main.aligncontent' ng-change='setMainBlockPropertiesAlignContent()'>
 					<option value='flex-start'>flex-start</option>
 					<option value='flex-end'>flex-end</option>
@@ -88,6 +104,10 @@
 					<option value='space-between'>space-between</option>
 					<option value='space-around'>space-around</option>
 				</select>
+<!-- 				<select ng-model='main'>
+					<option>Increase</option>
+					<option>Decrease</option>
+				</select> -->
 			</div>
 			<div class='main-first-block-wrapper' style='{"flex-wrap", mail.wrap}'>
 				<div class='main-first-block-item' ng-repeat='n in mainblocks'>{{n.text}}</div>	
@@ -105,11 +125,36 @@
     		</div>
 		</div>
 	</div>
-	<aside class="aside_right">Aside right</aside>
+	<aside class="aside_right">
+		<div class='aside-block'>
+		</div>
+		<div class='aside-block'>
+		</div>
+		<div class='aside-block'>
+		</div>
+	</aside>
 	</div>
 <!-- MAIN CONTENT END -->
 <!-- FOOTER START -->
-	<footer>Footer</footer>
+	<footer>
+		<div class='footer-block'>
+			<section>Link 1</section>
+			<section>Link 2</section>
+			<section>Link 3</section>
+			<section>Link 4</section>
+		</div>
+		<div class='footer-block'>
+			<section>Link 1</section>
+			<section>Link 2</section>
+			<section>Link 3</section>
+			<section>Link 4</section></div>
+		<div class='footer-block'>
+			<section>Link 1</section>
+			<section>Link 2</section>
+			<section>Link 3</section>
+			<section>Link 4</section>
+		</div>
+	</footer>
 <!-- FOOTER END -->
 </body>
 </html>
