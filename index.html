@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="playground" ng-view>
 <head>
-	<title>Flex All The Things</title>
+	<title>Flex playground</title>
 	<script type="text/javascript" src="js/angular.js"></script>
 	<script type="text/javascript" src="js/app.js" /></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 </head>
 <body ng-controller="playgroundController">
 <!-- HEADER START -->
@@ -12,40 +13,52 @@
 	<!-- HEADER TOP  -->
 		<div class='header-top'>
 			<div class='header-logo'>
-				<img src="images/logo.png" />
+				<div class='black-stripe'>
+					<select ng-model='header.justifying' ng-change='setMainBlockProperties()'>
+						<option value='flex-start'>flex-start</option>
+						<option value='flex-end'>flex-end</option>
+						<option value='center'>center</option>
+						<option value='space-between'>space-between</option>
+						<option value='space-around'>space-around</option>
+					</select>
+		</div>
 			</div>
-			<div class='top-right'>
-				<div class='header-search'>
+			
+<!-- 		    <div class="userpanel">
+			    <div class='header-search'>
 					<div>
 						<input type='text' placeholder='search'>
 					</div>
 				</div>
-			    <section class="userpanel">
-					<div class="user">
-						<div class="notification">
-							<span class="entypo-bell"></span>
-							<span class="number">6</span>
-						</div>
-						<div class="picture">
-							<img src="http://lorempixel.com/output/people-q-c-400-400-9.jpg" alt="User Name" />
-						</div>
-						<div class="name">Any name here</div>
+				<div class="user">
+					<div class="notification">
+						<span class="entypo-bell"></span>
+						<span class="number">6</span>
 					</div>
-			    </section>
-			   </div>
+					<div class="picture">
+						<img src="http://lorempixel.com/output/people-q-c-400-400-9.jpg" alt="User Name" />
+					</div>
+					<div class="name">Nombre Usuario</div>
+				</div>
+		    </div> -->
 		</div>
+		
 	<!-- HEADER MENU -->
-		<div class='header-menu' ng-style="flexDirection">
-				<div ng-click='flexDirection={"justify-content":"flex-start"}'>FLEX START</div>
-				<div ng-click='flexDirection={"justify-content":"flex-end"}'>FLEX END</div>
-				<div ng-click='flexDirection={"justify-content":"center"}'>CENTER</div>
-				<div ng-click='flexDirection={"justify-content":"space-between"}'>SPACE BETWEEN</div>
-				<div ng-click='flexDirection={"justify-content":"space-around"}'>SPACE AROUND</div>
+		
+		<div class='header-menu' ng-style="{'justify-content' : header.justifying}">
+		<span class='code-button' ng-click='showCSSCode($event)'>&lt;/&gt;</span>
+				<div ng-click='showAccordionFunc()'>Accordion</div>
+				<div ng-click='showMainFunc()'>Main</div>
+				<div ng-click='showGalleryFunc()'>Gallery</div>
+				<div>MENU ITEM</div>
+				<div>MENU ITEM</div>
 		</div>
 	<!-- HEADER ACCORDION-->
-		<div class='header-accordion'>
+	<div class='landing-title'>
+			<div class='landing-text'>Welcome to Flexbox Playground!</div>
+		</div>
+		<div class='header-accordion' ng-if='showAccordion'>
 			<div class = "accordion">
-				<!--<div class="accordion-item rose"></div>-->
 				<div class="accordion-item blue"></div>
 				<div class="accordion-item red"></div>
 				<div class="accordion-item green"></div>
@@ -55,64 +68,163 @@
 <!-- HEADER END -->
 <!-- MAIN CONTENT START -->
 	<div id='main'>
-	<aside class="aside_left">
-		<div class='aside-left-item'>Menu item 1</div>
-		<div class='aside-left-item'>Menu item 2</div>
-		<div class='aside-left-item'>Menu item 3</div>
-		<div class='aside-left-item'>Menu item 4</div>
-		<div class='aside-left-item'>Menu item 5</div>
-		<div class='aside-left-item'>Menu item 6</div>
-		<div class='aside-left-item'>Menu item 7</div>
+
+	<aside class="aside_left" ng-style='{"max-width": leftSideVisible ? "220px": "50px", "min-width": leftSideVisible ? "220px": "50px"}'>
+		
+		<div class='parent-settings' ng-style='{"display": leftSideVisible ? "block": "none"}'>
+			<div class='header-stripe'>Parent properties</div>
+		<div class='settings-items'>
+				<p>
+					justify-content:
+					</p>
+					<select ng-model='main.justifying' ng-change='setMainBlockProperties()'>
+						<option value='flex-start'>flex-start</option>
+						<option value='flex-end'>flex-end</option>
+						<option value='center'>center</option>
+						<option value='space-between'>space-between</option>
+						<option value='space-around'>space-around</option>
+					</select>
+				
+		</div>
+		<div class='settings-items'>
+				<p>
+					wrap:
+					</p>
+					<select ng-model='main.wrap' ng-change='setMainBlockPropertiesWrap()'>
+						<option value='wrap'>wrap</option>
+						<option value='nowrap'>nowrap</option>
+					</select>
+				
+		</div>
+		<div class='settings-items'>
+				<p>
+					direction:
+					</p>
+					<select ng-model='main.direction' ng-change='setMainBlockPropertiesDirection()'>
+						<option value='row'>row</option>
+						<option value='row-reverse'>row-reverse</option>
+						<option value='column'>column</option>
+						<option value='column-reverse'>column-reverse</option>
+					</select>
+				
+		</div>
+		<div class='settings-items'>
+				<p>
+					align-items:
+				</p>
+					<select ng-model='main.alignitems' ng-change='setMainBlockPropertiesAlignItems()'>
+						<option value='flex-start'>flex-start</option>
+						<option value='flex-end'>flex-end</option>
+						<option value='center'>center</option>
+						<option value='stretch'>stretch</option>
+						<option value='baseline'>baseline</option>
+					</select>
+				
+		</div>
+		<div class='settings-items'>
+				<p>
+					align-content:
+					</p>
+					<select ng-model='main.aligncontent' ng-change='setMainBlockPropertiesAlignContent()'>
+						<option value='flex-start'>flex-start</option>
+						<option value='flex-end'>flex-end</option>
+						<option value='center'>center</option>
+						<option value='stretch'>stretch</option>
+						<option value='space-between'>space-between</option>
+						<option value='space-around'>space-around</option>
+					</select>
+				
+		</div>
+		</div>
+		<div class='left-menu-button' ng-click='toggleLeftSidebar()' ng-style='{"padding": leftSideVisible ? "12px": "12px 14px"}'><i class='fa fa-bars fa-3x'></i></div>
 	</aside>
 	<div class="main">
+	<h2>Playground</h2>
 		<div class='main-block first'>
-			<div class='main-first-block-stats controls'>
-				<b>Justify content</b>
-				<select ng-model='main.justifying' ng-change='setMainBlockProperties()'>
-					<option value='flex-start'>flex-start</option>
-					<option value='flex-end'>flex-end</option>
-					<option value='center'>center</option>
-					<option value='space-between'>space-between</option>
-					<option value='space-around'>space-around</option>
-				</select>
-				<b>Wrapping</b>
-				<select ng-model='main.wrap' ng-change='setMainBlockPropertiesWrap()'>
-					<option value='wrap'>wrap</option>
-					<option value='nowrap'>nowrap</option>
-				</select>
-				<b>Direction</b>
-				<select ng-model='main.direction' ng-change='setMainBlockPropertiesDirection()'>
-					<option value='row'>row</option>
-					<option value='row-reverse'>row-reverse</option>
-					<option value='column'>column</option>
-					<option value='column-reverse'>column-reverse</option>
-				</select>
-				<b>Align items</b>
-				<select ng-model='main.alignitems' ng-change='setMainBlockPropertiesAlignItems()'>
-					<option value='flex-start'>flex-start</option>
-					<option value='flex-end'>flex-end</option>
-					<option value='center'>center</option>
-					<option value='stretch'>stretch</option>
-					<option value='baseline'>baseline</option>
-				</select>
-				<b>Align content</b>
-				<select ng-model='main.aligncontent' ng-change='setMainBlockPropertiesAlignContent()'>
-					<option value='flex-start'>flex-start</option>
-					<option value='flex-end'>flex-end</option>
-					<option value='center'>center</option>
-					<option value='stretch'>stretch</option>
-					<option value='space-between'>space-between</option>
-					<option value='space-around'>space-around</option>
-				</select>
-<!-- 				<select ng-model='main'>
-					<option>Increase</option>
-					<option>Decrease</option>
-				</select> -->
-			</div>
-			<div class='main-first-block-wrapper' style='{"flex-wrap", mail.wrap}'>
-				<div class='main-first-block-item' ng-repeat='n in mainblocks'>{{n.text}}</div>	
+			<div class="main-wrapper" ng-if='showMain'>
+			<div class='main-first-block-wrapper'>
+				<span class='code-button' ng-click='showCSSCode($event)'>&lt;/&gt;</span>
+				<div contenteditable class='main-first-block-item' ng-repeat='n in mainblocks' ng-style='{"flex": n.grow + " " + n.shrink + " " + n.basis, "order": n.order, "align-self": n.alignself }'><span  class='number number--mountain-meadow'>{{$index}}</span>
+				<span class='code-button' ng-click='showCSSCode($event)'>&lt;/&gt;</span>
+				<span class='code'></span>
+				 {{n.text}}</div>	
 			</div>	
+			</div>
 		</div>
+	</div>
+	<aside class="aside_right" ng-style='{"max-width": rightSideVisible ? "302px": "50px", "min-width": rightSideVisible ? "302px": "50px"}'>
+		<div class='right-menu-button' ng-click='toggleRightSidebar()' ng-style='{"padding": rightSideVisible ? "12px": "12px 0px"}'><i class='fa fa-bars fa-3x'></i></div>
+		<div class='child-settings' ng-style='{"display": rightSideVisible ? "block": "none"}'>
+		<div class='header-stripe'>Child properties</div>
+		<div class='settings-items'>
+			<p> Global settings <br>
+				<div ng-click='deleteItem()'>-</div>
+				<div ng-click='pushItem()'>+</div>
+				<span>
+					flex
+				</span>
+				<span class='input-span'>
+					<input type='text' class='transparent-input grow' ng-model='global.grow'>
+				</span>
+				<span class='input-span'>
+					<input type='text' class='transparent-input shrink' ng-model='global.shrink'>
+				</span>
+				<span class='input-span'>
+					<input type='text' class='transparent-input' ng-model='global.basis'>
+				</span>
+			</p>
+			<p><span>order</span>
+			<span class='input-span'>
+					<input type='text' class='transparent-input order' ng-model='global.order'>
+				</span></p>
+			<p> align-self:
+				<select ng-model='global.alignself'>
+						<option value='flex-start'>flex-start</option>
+						<option value='flex-end'>flex-end</option>
+						<option value='center'>center</option>
+						<option value='stretch'>stretch</option>
+						<option value='space-between'>space-between</option>
+						<option value='space-around'>space-around</option>
+					</select>
+			</p>
+			<button class="apply-global-button" ng-click='applyGlobal()'>Apply</button>
+		</div>
+		<p> Custom settings <br></p>
+		<div class='settings-items' ng-repeat='n in mainblocks'>
+			<p> {{$index}}
+				<span>
+					flex
+				</span>
+				<span class='input-span'>
+					<input type='text' class='transparent-input grow' ng-model='n.grow'>
+				</span>
+				<span class='input-span'>
+					<input type='text' class='transparent-input shrink' ng-model='n.shrink'>
+				</span>
+				<span class='input-span'>
+					<input type='text' class='transparent-input' ng-model='n.basis'>
+				</span>
+			</p>
+			<p><span>order</span>
+			<span class='input-span'>
+					<input type='text' class='transparent-input order' ng-model='n.order'>
+				</span></p>
+			<p> align-self:
+				<select ng-model='n.alignself'>
+						<option value='flex-start'>flex-start</option>
+						<option value='flex-end'>flex-end</option>
+						<option value='center'>center</option>
+						<option value='stretch'>stretch</option>
+						<option value='space-between'>space-between</option>
+						<option value='space-around'>space-around</option>
+					</select>
+			</p>
+		</div>
+		</div>
+	</aside>
+	<div class="modal code" css-code ng-if='showModal' ng-click='closeModal($event)'></div>
+	</div>
+	<div class='gallery-block'>
 		<div class='main-photogallery-block'>
 			<div class='main-photogallery-block-controls controls'>
 				<input type="button" ng-click='addImagesToGallery()' value="ADD">
@@ -125,35 +237,66 @@
     		</div>
 		</div>
 	</div>
-	<aside class="aside_right">
-		<div class='aside-block'>
-		</div>
-		<div class='aside-block'>
-		</div>
-		<div class='aside-block'>
-		</div>
-	</aside>
-	</div>
 <!-- MAIN CONTENT END -->
 <!-- FOOTER START -->
 	<footer>
-		<div class='footer-block'>
-			<section>Link 1</section>
-			<section>Link 2</section>
-			<section>Link 3</section>
-			<section>Link 4</section>
+		<div class='title-block'>
+		<div class='title contacts'>Contacts</div>
+		<div class='title'>Sitemap</div>
+		<div class='title socials'>Socials</div>
 		</div>
-		<div class='footer-block'>
-			<section>Link 1</section>
-			<section>Link 2</section>
-			<section>Link 3</section>
-			<section>Link 4</section></div>
-		<div class='footer-block'>
-			<section>Link 1</section>
-			<section>Link 2</section>
-			<section>Link 3</section>
-			<section>Link 4</section>
+		<div class='data-block'>
+		<div class='footer-block contacts'>
+			<div class='contact-item'><i class='fa fa-map-marker'></i><span>Ukraine, Uzhgorod. Lva Tolstogo, 10</span></div>
+			<div class='contact-item'><i class='fa fa-envelope'></i><span>binary-studio@gmail.com</span></div>
+			<div class='contact-item'><i class='fa fa-phone'></i><span>+38(050) 777-33-00</span></div>
 		</div>
+		<div class='footer-block sitemap'>
+			<div>Accordion</div>
+			<div>Main</div>
+			<div>Gallery</div>
+			<div>Other item</div>
+		</div>
+		<div class='footer-block socials'>
+			<div class='social-item'>
+				<span class="fa-stack fa-lg">
+				  <i class="fa fa-circle fa-stack-2x twitter"></i>
+				  <i class="fa fa-twitter fa-stack-1x white"></i>
+				</span>
+			</div>
+			<div class='social-item'>
+				<span class="fa-stack fa-lg">
+				  <i class="fa fa-circle fa-stack-2x facebook"></i>
+				  <i class="fa fa-facebook fa-stack-1x white"></i>
+				</span>
+			</div>
+			<div class='social-item'>
+				<span class="fa-stack fa-lg">
+				  <i class="fa fa-circle fa-stack-2x bitbucket"></i>
+				  <i class="fa fa-bitbucket fa-stack-1x white"></i>
+				</span>
+			</div>
+			<div class='social-item'>
+				<span class="fa-stack fa-lg">
+				  <i class="fa fa-circle fa-stack-2x youtube"></i>
+				  <i class="fa fa-youtube fa-stack-1x white"></i>
+				</span>
+			</div>
+			<div class='social-item'>
+				<span class="fa-stack fa-lg">
+				  <i class="fa fa-circle fa-stack-2x google-plus"></i>
+				  <i class="fa fa-google-plus fa-stack-1x white"></i>
+				</span>
+			</div>
+			<div class='social-item'>
+				<span class="fa-stack fa-lg">
+				  <i class="fa fa-circle fa-stack-2x github"></i>
+				  <i class="fa fa-github fa-stack-1x white"></i>
+				</span>
+			</div>
+		</div>
+		</div>
+		<div class='copyright'>Copyright &copy; Binary Studio 2015</div>
 	</footer>
 <!-- FOOTER END -->
 </body>
